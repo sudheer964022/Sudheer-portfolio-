@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kancham Sudheer Reddy's Portfolio" />
+  <meta name="keywords" content="Kancham Sudheer Reddy, FullStack Developer, Portfolio" />
+  <meta name="author" content="Kancham Sudheer Reddy" />
+  <title>Kancham Sudheer Reddy | Portfolio</title>
+  <link rel="icon" href="https://github.com/sudheer964022/example/blob/main/24235.jpg?raw=true" type="image/png" sizes="16x16" />
+
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(to right, #000000 0%, #333333 40%, #888888 80%, #ffffff 100%);
+      color: white;
+      font-family: 'Patrick Hand', cursive;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light-mode {
+      background: linear-gradient(to right, #0376b5e9 0%, #2387bdf5 30%, #1d598ae5 60%, #292727 100%);
+      color: #000;
+    }
+
+    body.light-mode .navbar,
+    body.light-mode .nav-link,
+    body.light-mode h1,
+    body.light-mode h2,
+    body.light-mode p {
+      color: #000 !important;
+    }
+
+    body.light-mode .btn-outline-light {
+      color: #000;
+      border-color: #000;
+    }
+
+    body.light-mode pre,
+    body.light-mode code[class*="language-"] {
+      background: #000000 !important;
+      color: #ffffff !important;
+    }
+
+    .highlight {
+      color: #f72585;
+    }
+
+    .highlight-green {
+      color: #00ffae;
+    }
+
+    .btn-custom {
+      border-radius: 50px;
+      padding: 0.5rem 1.5rem;
+      font-weight: bold;
+    }
+
+    pre {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      background-color: #0f0f2b;
+      color: #f8f8f2;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      max-width: 100%;
+    }
+
+    code {
+      white-space: pre;
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%) !important;
+      color: white;
+    }
+
+    pre::-webkit-scrollbar {
+      display: none;
+    }
+
+    pre {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    code[class*="language-"], pre[class*="language-"] {
+      background:  #000 !important;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 45px;
+      height: 24px;
+      margin-left: 1rem;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #4c4c4c;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 3px;
+      background-color: rgb(54, 54, 54);
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background: linear-gradient(to right, #2387bdf5 99%, #0e8cf3e5 40%);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    @media (max-width: 768px) {
+      h1, h2 {
+        font-size: 2rem;
+      }
+    }
+
+    /* ✨ Typing Animation */
+    .cursor {
+      display: inline-block;
+      color: #00ffae;
+      animation: blink 2.0s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .about-section {
+            text-align: center;
+            padding: 60px;
+            border-radius: 10px;
+        }
+        
+        .profile-img {
+            width: 170px;
+            height: 190px;
+            border-radius: 5%;
+            object-fit: cover;
+            margin-bottom: 40px;
+        }
+        .about-text {
+            font-size: 25px;
+            line-height: 1.6;
+        }
+
+       /* Education Section Styles */
+#education {
+  padding: 60px 0;
+}
+
+.about-section {
+  color: white;
+}
+
+
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+  border-left: 3px solid #208fdf;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.timeline-entry {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-entry::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: #0cb2f9;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.timeline-entry .card {
+  background: #11111100;
+  border: 2px solid #07c4f8;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3), 
+              0 0 15px rgba(0, 255, 0, 0.3), 
+              0 0 20px rgba(0, 0, 255, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: shadowAnimation 3s infinite linear;
+}
+
+.timeline-entry .card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 
+              0 0 25px rgba(0, 255, 0, 0.6), 
+              0 0 30px rgba(0, 0, 255, 0.6);
+  animation: shadowAnimation 1.5s infinite linear;
+}
+
+.timeline-entry .card-body {
+  padding: 20px;
+}
+
+.timeline-entry .card-title {
+  color: #00ffae;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.timeline-entry .card-text strong {
+  color: #0bbcf6;
+  font-size: 1.2rem;
+}
+
+.timeline-entry .card-text {
+  font-size: 1.1rem;
+}
+
+@keyframes shadowAnimation {
+  0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0); }
+  25% { box-shadow: 0 0 10px rgba(255, 255, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0); }
+  50% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0); }
+  75% { box-shadow: 0 0 10px rgba(0, 0, 255, 0.5), 0 0 15px rgba(0, 0, 0, 0); }
+  100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0); }
+}
+
+@keyframes scrollSkills {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Changed to -50% for smooth looping */
+    }
+}
+  
+  /* Container hover pauses animation */
+  .skills-container:hover .skills-scroll {
+    animation-play-state: paused;
+  }
+  
+  /* Individual skill item hover effect */
+  .skill-item:hover {
+    transform: scale(1.15);
+    z-index: 10;
+    box-shadow: 0 0 15px rgba(255, 123, 0, 0.5);
+  }
+  
+  .skills-scroll {
+    animation: scrollSkills 20s linear infinite;
+    transition: transform 0.2s ease;
+  }
+  
+  /* Update the scrollSkills animation */
+@keyframes scrollSkills {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Changed to -50% for smooth looping */
+    }
+}
+
+.skills-container {
+    overflow: hidden;
+    position: relative;
+    height: 240px;
+    margin: 20px 0;
+    width: 100%;
+    perspective: 1000px; /* Add perspective for 3D effect */
+}
+
+.skills-scroll {
+    display: flex;
+    position: absolute;
+    width: fit-content;
+    animation: scrollSkills 20s linear infinite;
+    transform-style: preserve-3d; /* Enable 3D transformations */
+    will-change: transform;
+}
+
+/* Create a second instance of skills for continuous scroll */
+.skills-scroll::after {
+    content: "";
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 100%;
+}
+
+.skills-container:hover .skills-scroll {
+    animation-play-state: paused !important;
+    -webkit-animation-play-state: paused !important;
+}
+
+
+@keyframes scrollSkills {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50% - 30px)); /* Adjust for gap between items */
+    }
+}
+
+.skill-item {
+    position: relative;
+    transform-style: flat; /* Changed from preserve-3d */
+    backface-visibility: visible; /* Important: do not hide back face */
+    will-change: transform, box-shadow, border-color;
+    border: 3px solid transparent;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.skill-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    backface-visibility: visible !important; /* Ensures it's always visible */
+    transform: translateZ(0); /* Helps with some rendering bugs */
+}
+
+.skill-item:hover {
+    animation: 
+        ultraSmoothSpin3D 3s cubic-bezier(0.45, 0, 0.55, 1) infinite,
+        borderColorCycle 0.3s linear infinite;
+}
+
+@keyframes ultraSmoothSpin3D {
+    0% {
+        transform: rotateY(0deg) rotateX(5deg);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        transform: rotateY(180deg) rotateX(5deg);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.22);
+    }
+    100% {
+        transform: rotateY(360deg) rotateX(5deg);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+}
+
+@keyframes borderColorCycle {
+    0% { border-color: #00f5ff; }
+    25% { border-color: #f3e11c; }
+    50% { border-color: #a855f7; }
+    75% { border-color: #0d78f2; }
+    100% { border-color: #00f5ff; }
+}
+
+
+/* Keep the pause behavior */
+.skills-container:hover .skills-scroll {
+    animation-play-state: paused !important;
+    -webkit-animation-play-state: paused !important;
+}
+  </style>
+</head>
+
+<body>
+
+<header class="navbar navbar-expand-lg navbar-dark px-4 py-2 container py-5 align-items-center">
+  <div class="d-flex flex-column">
+    <h1 class="mb-0" style="font-size: 1.5rem;">KANCHAM SUDHEER REDDY</h1>
+    <p class="mb-0 text-center" style="font-size: 0.8rem;">FULLSTACK DEVELOPER</p>
+  </div>
+
+  <div class="ml-auto d-flex align-items-center justify-content-center">
+    <label class="switch">
+      <input type="checkbox" id="modeToggle">
+      <span class="slider round"></span>
+    </label>
+  </div>
+  <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navMenu">
+    <span><i class="fas fa-bars text-white"></i></span>
+  </button>
+  <nav class="collapse navbar-collapse justify-content-end" id="navMenu" style="font-size: 1.5rem;">
+    <ul class="navbar-nav align-items-center">
+      <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+      <li class="nav-item"><a class="nav-link" href="#education">EDUCATION</a></li>
+      <li class="nav-item"><a class="nav-link" href="#skills">SKILLS</a></li>
+      <li class="nav-item"><a class="nav-link" href="#projects">PROJECTS</a></li>
+      <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container py-5">
+  <div class="row align-items-center" style="padding: 120px 0px 120px 0px;">
+    <div class="col-md-6 text-center text-md-left">
+      <h2>Hello,</h2>
+      <h1>This is <span class="highlight">KANCHAM SUDHEER REDDY</span>, I'm a</h1>
+
+      <!-- 🆕 Typing animation added here -->
+      <h1>Professional <span class="highlight-green" id="typing-text"></span><span class="cursor">|</span></h1>
+
+      <div class="mt-4">
+        <a href="https://github.com/sudheer964022" class="text-white mx-2" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+        <a href="https://www.linkedin.com/in/kancham-sudheer-reddy-0013342b7/" target="_blank" class="text-white mx-2"><i class="fab fa-linkedin fa-lg"></i></a>
+      </div>
+
+      <div class="mt-4">
+        <a href="#contact" class="btn btn-outline-light btn-custom mr-2">CONTACT ME <i class="fas fa-user"></i></a>
+        <a href="https://drive.google.com/file/d/1wmw7FNv_tKuz3AAxK-lCKSgY4A6nd4Ts/view?usp=sharing" target="_blank" class="btn btn-primary btn-custom" style="background: linear-gradient(to right, #f72585, #7209b7); border: none;">GET RESUME <i class="fas fa-download"></i></a>
+      </div>
+    </div>
+
+    <div class="col-lg-6 mt-4 mt-lg-0" style="background: linear-gradient(to right, #f72585, #7209b7); border-radius: 10px; padding: 0px 5px 0px 5px; overflow: hidden;">
+      <div style="display: flex; gap: 8px; padding: 5px; background: rgba(255, 255, 255, 0.1); border-top-left-radius: 10px; border-top-right-radius: 10px; width: fit-content;">
+        <span style="width: 12px; height: 12px; background-color: #ff5f56; border-radius: 50%; display: inline-block;"></span>
+        <span style="width: 12px; height: 12px; background-color: #ffbd2e; border-radius: 50%; display: inline-block;"></span>
+        <span style="width: 12px; height: 12px; background-color: #27c93f; border-radius: 50%; display: inline-block;"></span>
+      </div>
+
+      <pre><code class="language-python">
+name = 'Kancham Sudheer Reddy'
+skills = ['Python', 'HTML', 'CSS', 'JS', 'React', 'Node', 'MySql']
+hard_worker = True
+problem_solver = True
+
+if hard_worker and problem_solver and len(skills) >= 5:
+    print(name, "is hireable.")
+else:
+    print(name, "is not hireable.")
+      </code></pre>
+    </div>
+  </div>
+
+  <div class="container" id="about">
+    <div class="about-section " style="@media (max-width: 768px) { max-width: 100%;}">
+      <h1 class=" text-center " style="padding-bottom: 60px; padding-top: 60px;">ABOUT ME</h1>
+        <img src="https://github.com/sudheer964022/example/blob/main/24235.jpg?raw=true" alt="Profile Picture" class="profile-img">
+        <h1 style="font-size: 1.9rem;">WHO I AM?</h1>
+        <p class="about-text">
+            My name is <strong>KANCHAM SUDHEER REDDY</strong>. I am a passionate and skilled Full-Stack Developer with expertise in both front-end and back-end technologies. 
+            I thrive in dynamic environments where I can solve complex problems, build scalable applications, and collaborate with teams to deliver high-quality solutions. 
+            With a strong foundation in JavaScript, frameworks like React and Node.js, and experience working with databases and cloud services, I am always eager to take on challenging projects that push my abilities further. 
+            I am actively seeking job opportunities that align with my skills, interests, and allow me to contribute meaningfully to innovative tech solutions.
+        </p>
+    </div>
+  </div>
+
+
+<div class="container" >
+  <div class="about-section">
+    <h1 class="text-center typing-border" style="padding-bottom: 80px; padding-top: 80px;" id="education">EDUCATION</h1>
+    <div class="timeline" >
+      
+      <div class="timeline-entry" >
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">2021 - Present</h5>
+            <p class="card-text">
+              <strong>BACHELOR OF ENGINEERING</strong><br>
+              STUDY WORLD COLLEGE OF ENGINEERING<br>
+              CGPA: 7.68 / 10
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">2019 - 2021</h5>
+            <p class="card-text">
+              <strong>HIGHER SECONDARY</strong><br>
+              NARAYANA JR COLLEGE<br>
+              Percentage: 86.9%
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">2018 - 2019</h5>
+            <p class="card-text">
+              <strong>SECONDARY SCHOOL</strong><br>
+              Z.P.H SCHOOL<br>
+              Percentage: 88%
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="container" id="about">
+  <div class="about-section">
+    <h1 class=" text-center" style="padding-bottom: 100px; padding-top: 100px;" id="skills">SKILLS</h1>
+      <div class="skills-container" style="overflow: hidden; position: relative; height: 240px; margin: 20px 0; width: 100%; perspective: 1000px;">
+        <div class="skills-scroll" style="display: flex; position: absolute; animation: scrollSkills 20s linear infinite; animation-delay: 0s; width: fit-content; padding-top: 20px;">
+          <!-- Python -->
+          <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" style="width: 100px; height: 100px;">
+            <p style="margin-top: 10px; font-weight: bold; color: #00ffae;">Python</p>
+          </div>
+          <!-- HTML -->
+          <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" style="width: 100px; height: 100px;">
+            <p style="margin-top: 10px; font-weight: bold; color: #f72585;">HTML</p>
+          </div>
+          <!-- CSS -->
+          <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" style="width: 100px; height: 100px;">
+            <p style="margin-top: 10px; font-weight: bold; color: #0bbcf6;">CSS</p>
+          </div>
+          <!-- JavaScript -->
+          <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" style="width: 100px; height: 100px;">
+            <p style="margin-top: 10px; font-weight: bold; color: #ffbd2e;">JavaScript</p>
+          </div>
+          <!-- React -->
+          <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" style="width: 100px; height: 100px;">
+            <p style="margin-top: 10px; font-weight: bold; color: #61dafb;">React</p>
+          </div>
+          <!-- Node.js -->
+          <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" style="width: 100px; height: 100px;">
+            <p style="margin-top: 10px; font-weight: bold; color: #27c93f;">Node.js</p>
+          </div>
+          <!-- MySQL -->
+          <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" style="width: 100px; height: 100px;">
+            <p style="margin-top: 10px; font-weight: bold; color: #ff5f56;">MySQL</p>
+          </div>
+          <!-- Python -->
+          <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" style="width: 100px; height: 100px;">
+            <p style="margin-top: 10px; font-weight: bold; color: #00ffae;">Python</p>
+          </div>
+          <!-- HTML -->
+          <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" style="width: 100px; height: 100px;">
+            <p style="margin-top: 10px; font-weight: bold; color: #f72585;">HTML</p>
+          </div>
+          <!-- CSS -->
+          <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" style="width: 100px; height: 100px;">
+            <p style="margin-top: 10px; font-weight: bold; color: #0bbcf6;">CSS</p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+  
+</main>
+
+<!-- JS Libraries -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+<!-- Dark/Light Mode Toggle -->
+<script>
+  const toggle = document.getElementById('modeToggle');
+  const body = document.body;
+
+  if (localStorage.getItem("mode") === "light") {
+    body.classList.add("light-mode");
+    toggle.checked = true;
+  }
+
+  toggle.addEventListener('change', () => {
+    if (toggle.checked) {
+      body.classList.add("light-mode");
+      localStorage.setItem("mode", "light");
+    } else {
+      body.classList.remove("light-mode");
+      localStorage.setItem("mode", "dark");
+    }
+  });
+</script>
+<script>
+  const text = "FullStack Developer...";
+  const typingText = document.getElementById("typing-text");
+  let i = 0;
+
+  function typeChar() {
+    if (i < text.length) {
+      typingText.textContent += text.charAt(i);
+      i++;
+      setTimeout(typeChar, 500);
+    } else {
+      setTimeout(() => {
+        typingText.textContent = "";
+        i = 0;
+        typeChar();
+      }, 8000); 
+    }
+  }
+  
+
+  window.onload = function () {
+    setInterval(() => {
+      typingText.textContent = "";
+      i = 0;
+      typeChar();
+    }, 10000); 
+    typeChar();
+  };
+</script>
+</body>
+</html>
