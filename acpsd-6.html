@@ -160,7 +160,7 @@
 
     .about-section {
             text-align: center;
-            padding: 60px;
+            padding: 60px 0px;
             border-radius: 10px;
         }
         
@@ -181,16 +181,15 @@
   padding: 60px 0;
 }
 
-.about-section {
-  color: white;
+.skills-container::-webkit-scrollbar-thumb:hover {
+    background: #00ffae;
 }
-
 
 
 .timeline {
   position: relative;
-  padding-left: 40px;
-  border-left: 3px solid #208fdf;
+  padding-left: 30px;
+  border-left: 5px solid #208fdf;
   border-radius: 5px;
   margin-top: 20px;
 }
@@ -224,11 +223,11 @@
 }
 
 .timeline-entry .card:hover {
-  transform: scale(1.02);
+  transform: scale(1.04);
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 
               0 0 25px rgba(0, 255, 0, 0.6), 
               0 0 30px rgba(0, 0, 255, 0.6);
-  animation: shadowAnimation 1.5s infinite linear;
+  animation: shadowAnimation 1.1s infinite linear;
 }
 
 .timeline-entry .card-body {
@@ -281,7 +280,7 @@
   }
   
   .skills-scroll {
-    animation: scrollSkills 20s linear infinite;
+    animation: scrollSkills 20s linear infinite forwards;
     transition: transform 0.2s ease;
   }
   
@@ -296,21 +295,31 @@
 }
 
 .skills-container {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: visible;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
     position: relative;
     height: 240px;
     margin: 20px 0;
     width: 100%;
     perspective: 1000px; /* Add perspective for 3D effect */
+    cursor: default;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    user-select: none; /* Prevent text selection during drag */
+    touch-action: pan-x;
 }
 
 .skills-scroll {
     display: flex;
     position: absolute;
-    width: fit-content;
-    animation: scrollSkills 20s linear infinite;
-    transform-style: preserve-3d; /* Enable 3D transformations */
+    width: max-content;
+    animation: scrollSkills 40s linear infinite forwards;
+    animation-play-state: running;
     will-change: transform;
+    padding-bottom: 15px; /* Add space for scrollbar */
+    touch-action: pan-x;
+    pointer-events: auto; /* Ensure clicks/touches are registered */
 }
 
 /* Create a second instance of skills for continuous scroll */
@@ -323,10 +332,50 @@
 }
 
 .skills-container:hover .skills-scroll {
-    animation-play-state: paused !important;
-    -webkit-animation-play-state: paused !important;
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
 }
 
+/* Add JavaScript to enable manual scrolling while preserving animation */
+@media (max-width: 991px) {
+    .skills-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .skills-scroll {
+        padding-bottom: 20px;
+    }
+    
+    .skill-item {
+        margin: 0 15px;
+    }
+}
+
+.skills-container:active {
+    cursor: grabbing;
+}
+
+/* Customize scrollbar for webkit browsers */
+.skills-container::-webkit-scrollbar {
+    display: none;
+}
+
+.skills-container::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+}
+
+.skills-container::-webkit-scrollbar-thumb {
+    background: #00ffae;
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.2);
+}
+
+/* Add JavaScript to handle manual scrolling */
+.skills-container.is-dragging .skills-scroll {
+    animation-play-state: paused;
+}
 
 @keyframes scrollSkills {
     0% {
@@ -339,7 +388,7 @@
 
 .skill-item {
     position: relative;
-    transform-style: flat; /* Changed from preserve-3d */
+    transform-style: preserve-3d;
     backface-visibility: visible; /* Important: do not hide back face */
     will-change: transform, box-shadow, border-color;
     border: 3px solid transparent;
@@ -387,8 +436,30 @@
 
 /* Keep the pause behavior */
 .skills-container:hover .skills-scroll {
-    animation-play-state: paused !important;
-    -webkit-animation-play-state: paused !important;
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+}
+
+/* Add JavaScript to handle manual scrolling */
+.skills-container.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+
+.skills-container.is-dragging .skills-scroll {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+    transition: none;
+}
+
+/* Make sure scrollbar is visible and usable */
+.skills-container::-webkit-scrollbar-thumb:hover {
+    background: #00ffae;
+}
+
+/* Ensure container is scrollable */
+.skills-container {
+    overflow-x: auto !important;
 }
   </style>
 </head>
@@ -407,10 +478,7 @@
       <span class="slider round"></span>
     </label>
   </div>
-  <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navMenu">
-    <span><i class="fas fa-bars text-white"></i></span>
-  </button>
-  <nav class="collapse navbar-collapse justify-content-end" id="navMenu" style="font-size: 1.5rem;">
+  <nav class="collapse navbar-collapse justify-content-end" id="navMenu" style="font-size: 1.3rem;">
     <ul class="navbar-nav align-items-center">
       <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
       <li class="nav-item"><a class="nav-link" href="#education">EDUCATION</a></li>
@@ -423,7 +491,7 @@
 
 <main class="container py-5">
   <div class="row align-items-center" style="padding: 120px 0px 120px 0px;">
-    <div class="col-md-6 text-center text-md-left">
+    <div class="col-md-6 text-center text-md-left" style="@media (max-width: 991px) { text-align: left !important; }">
       <h2>Hello,</h2>
       <h1>This is <span class="highlight">KANCHAM SUDHEER REDDY</span>, I'm a</h1>
 
@@ -441,7 +509,7 @@
       </div>
     </div>
 
-    <div class="col-lg-6 mt-4 mt-lg-0" style="background: linear-gradient(to right, #f72585, #7209b7); border-radius: 10px; padding: 0px 5px 0px 5px; overflow: hidden;">
+    <div class="col-lg-6 col-md-6 mt-4 mt-lg-0" style="background: linear-gradient(to right, #f72585, #7209b7); border-radius: 10px; padding: 0px 5px 0px 5px; overflow: hidden; @media (max-width: 991px) { margin-left: auto; }">
       <div style="display: flex; gap: 8px; padding: 5px; background: rgba(255, 255, 255, 0.1); border-top-left-radius: 10px; border-top-right-radius: 10px; width: fit-content;">
         <span style="width: 12px; height: 12px; background-color: #ff5f56; border-radius: 50%; display: inline-block;"></span>
         <span style="width: 12px; height: 12px; background-color: #ffbd2e; border-radius: 50%; display: inline-block;"></span>
@@ -525,7 +593,7 @@ else:
   </div>
 </div>
 
-<div class="container" id="about">
+<div class="container-fluid px-0 w-100" id="about">
   <div class="about-section">
     <h1 class=" text-center" style="padding-bottom: 100px; padding-top: 100px;" id="skills">SKILLS</h1>
       <div class="skills-container" style="overflow: hidden; position: relative; height: 240px; margin: 20px 0; width: 100%; perspective: 1000px;">
@@ -564,7 +632,7 @@ else:
           <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" style="width: 100px; height: 100px;">
             <p style="margin-top: 10px; font-weight: bold; color: #ff5f56;">MySQL</p>
-          </div>
+          </div> 
           <!-- Python -->
           <div class="skill-item" style="flex: 0 0 auto; margin: 0 30px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); width: 150px; height: 150px;">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" style="width: 100px; height: 100px;">
